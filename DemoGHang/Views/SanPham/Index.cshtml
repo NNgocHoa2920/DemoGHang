@@ -44,9 +44,21 @@
                 @Html.DisplayFor(modelItem => item.MoTa)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Edit", "Edit", new { idSanPham=item.SanPhamId }) |
+                    @Html.ActionLink("Details", "Details", new { idSanPham = item.SanPhamId }) |
+                    @Html.ActionLink("Delete", "Delete", new { idSanPham = item.SanPhamId })
+                    @using (Html.BeginForm("AddToCart", "SanPham", FormMethod.Post))
+                    {
+                        @Html.Hidden("ID", item.SanPhamId) <!-- Thay yourIdValue bằng giá trị id thực tế -->
+                        <div class="form-group">
+                            <label for="quantity" class="control-label">Quantity:</label>
+                            <input type="text" name="soluong" id="soluong" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Add to Cart" class="btn btn-default" />
+                        </div>
+                    }
+
             </td>
         </tr>
 }
